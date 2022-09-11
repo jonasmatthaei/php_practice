@@ -56,62 +56,69 @@
     </button>
   </div>
 </div>
-
 <section>
-  <div class="table_section">
-  <div class="tbl-header">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <thead>
-        <tr>
-          <th>Klasse</th>
-          <th>Name</th>
-          <th>E-Mail</th>
-          <th class="th_bearbeiten">Bearbeiten</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <div class="tbl-content">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tbody>
-        <tr>
-        </tr>
-        <tr>
-        <td>5d</td>
-          <td>
-            <?php
-            echo injection();
-            ?>
-          </td>
-          <td>jonas.matthaei@wdg.de</td>
-          <td class="td_bearbeiten"><button class="button_del_user">Bearbeiten</button></td>
-        </tr>
-        <tr>
-        <td>6a</td>
-          <td>Philip Jünemann</td>
-          <td>philip.juenemann@wdg.de</td>
-          <td class="td_bearbeiten"><button class="button_del_user">Bearbeiten</button></td>
-        </tr>
-        <tr>
-        <td>11c</td>
-          <td>Juli Bossong</td>
-          <td>juli.bossong@wdg.de</td>
-          <td class="td_bearbeiten"><button class="button_del_user">Bearbeiten</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
+        <div class="table_section">
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th>Klasse</th>
+                <th>Name</th>
+                <th>E-Mail</th>
+                <th class="th_bearbeiten">Bearbeiten</th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <?php
+                $all_user = showUser();
+                echo $all_user;
+                ?>
+            </tbody>
+          </table>
+        </div>
+      </section>
 </div>
 
 </body>
 </html>
 
-<?php
-function injection(){
-  $data = "<h1>Test</h1>";
 
-  return $data;
+
+<?php
+
+
+function showUser(){
+  include('inc/db.php');
+
+    $tmp_data = "";
+
+    $sql = "SELECT * from schueler";
+    $result = mysqli_query($conn, $sql);
+
+    while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+      $sacc_email = $row["sacc_email"];
+      $sacc_UN = $row["sacc_UN"];
+      $sacc_stufe = $row["sacc_stufe"];
+      $sacc_vorname = $row["sacc_vorname"];
+      $sacc_nachname = $row["sacc_nachname"];
+
+        $tmp_data = $tmp_data . '
+        <tr>
+              <td>'. $sacc_stufe .'</td>
+                <td>'. $sacc_vorname .' '. $sacc_nachname  .'</td>
+                <td>'. $sacc_email .'</td>
+                <td class="td_bearbeiten"><button class="button_del_user">Bearbeiten</button></td>
+         </tr>';
+
+    }
+
+    return $tmp_data;
+
+
 }
+
 ?>
