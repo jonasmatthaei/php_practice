@@ -10,6 +10,6 @@ print_r($result);
 // slicing on fields
 $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 // picking column
-print_r($row["sacc_email"]);
+$sacc_email = $row["sacc_email"];
 
 ?>
