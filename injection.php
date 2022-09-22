@@ -96,15 +96,12 @@ function showUser(){
 
     $tmp_data = "";
 
-    $sql = "SELECT * from schueler";
+    $sql = "SELECT sacc_stufe, Count(sacc_id) as schueler_anzahl from schueler GROUP BY sacc_stufe";
     $result = mysqli_query($conn, $sql);
 
     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-      $sacc_email = $row["sacc_email"];
-      $sacc_UN = $row["sacc_UN"];
-      $sacc_stufe = $row["sacc_stufe"];
-      $sacc_vorname = $row["sacc_vorname"];
-      $sacc_nachname = $row["sacc_nachname"];
+      $stufe = $row["sacc_stufe"];
+      $schueler_anzahl = $row["schueler_anzahl"];
 
         $tmp_data = $tmp_data . '
         <tr>

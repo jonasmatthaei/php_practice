@@ -88,12 +88,12 @@ session_start();
             $sacc_email = $row["sacc_email"];
             $sacc_UN = $row["sacc_UN"];
             $sacc_stufe = $row["sacc_stufe"];
-            /*
-            echo '<td>$sacc_stufe</td>';
-            echo '<td>$sacc_UN</td>';
-            echo '<td>$sacc_email</td>';
+
+            <td> . $sacc_stufe . </td>;
+            <td> . $sacc_UN . </td>;
+            <td>. $sacc_email .</td>';
             <td class="td_bearbeiten"><button class="button_del_user">Bearbeiten</button></td>;
-            */
+
           }
           ?>
         </tr>
